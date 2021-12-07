@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import { useEffect, useCallback } from "react";
+
+import { useDispatch } from "react-redux";
+
+import { setGoods } from "./store/action";
+
+import Goods from "./components/Goods/Goods";
+import Header from "./components/Header/Header";
+
+import data from "./data/goods.json";
+
 import './App.css';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  const setGoodsToStore = useCallback(() => {
+    setTimeout(() => {
+      dispatch(setGoods(data));
+    }, 2000)
+  }, [dispatch]);
+
+  useEffect(() => {
+    setGoodsToStore();
+  }, [setGoodsToStore]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <Header />
+      <div className="container">
+        <Goods />
+      </div>
     </div>
   );
 }

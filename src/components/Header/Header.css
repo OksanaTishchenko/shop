@@ -1,0 +1,27 @@
+.header {
+  height: 50px;
+  background: rgb(207, 30, 65);
+  display: flex;
+  align-items: center;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.menu__item {
+  margin-right: 20px;
+}
+
+.menu__link {
+  text-decoration: none;
+  color: #fff;
+  transition: .15s;
+  font-size: 20px;
+}
+
+.menu__link:hover {
+  color: tomato
+}
