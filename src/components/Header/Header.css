@@ -1,8 +1,11 @@
 .header {
   height: 50px;
   background: rgb(207, 30, 65);
+
   display: flex;
   align-items: center;
+  box-shadow: 0 3px 5px rgba(0,0,0,.3);
+  margin-bottom: 20px;
 }
 
 .menu {
@@ -22,6 +25,10 @@
   font-size: 20px;
 }
 
+.active {
+  color:black;
+}
+
 .menu__link:hover {
-  color: tomato
+  color: rgb(73, 30, 22)
 }

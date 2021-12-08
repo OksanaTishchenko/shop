@@ -3,42 +3,56 @@
     "id": 1,
     "title": "Audi",
     "price": "100000",
-    "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg"
+    "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg",
+    "isFavourite": false,
+    "isCart": false
   },
   {
     "id": 2,
     "title": "Mazda",
     "price": "60000",
-    "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg"
+    "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg",
+    "isFavourite": false,
+    "isCart": false
   },
   {
     "id": 3,
     "title": "Volkswagen",
     "price": "30000",
-    "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg"
+    "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg",
+    "isFavourite": false,
+    "isCart": false
   },
   {
     "id": 4,
     "title": "Toyota",
     "price": "70000",
-    "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg"
+    "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg",
+    "isFavourite": false,
+    "isCart": false
   },
   {
     "id": 5,
-    "title": "BMV",
+    "title": "BMW",
     "price": "70000",
-    "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg"
+    "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg",
+    "isFavourite": false,
+    "isCart": false
   },
   {
     "id": 6,
     "title": "Mercedes",
     "price": "70000",
-    "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg"
+    "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg",
+    "isFavourite": false,
+    "isCart": false
   },
   {
     "id": 7,
     "title": "Hyundai",
     "price": "70000",
-    "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg"
+    "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg",
+    "isFavourite": false,
+    "isCart": false
   }
 ]

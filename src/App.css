@@ -13,3 +13,18 @@ li {
   min-width: 320px;
   background: #FCF8F3;
 }
+
+.container {
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.page__title {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}

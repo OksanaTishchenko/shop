@@ -1,0 +1,42 @@
+.favourites {
+  width: 400px;
+  margin: 30px auto;
+}
+
+.favourite {
+  width: 100%;
+  padding: 10px;
+  background: #ebc9cf;
+  display: flex;
+  color: black;
+  border-radius: 5px;
+}
+
+.favourite + .favourite{
+  margin-top: 20px;
+}
+
+.favourite__index {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.favourite__title {
+  margin-left: 10px;
+}
+
+.favourite__icon-delete,
+.favourite__icon-cart {
+  margin-left: 15px;
+  transition: .15s;
+  cursor: pointer;
+}
+
+.favourite__actions {
+  margin-left: auto;
+}
+
+.favourite__icon-delete:hover,
+.favourite__icon-cart:hover {
+  color: rgb(207, 30, 65);
+}
