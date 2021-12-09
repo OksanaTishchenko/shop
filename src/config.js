@@ -1,0 +1,1 @@
+export const routes = { home: "/", favourites: "/favourites", cart: "/cart" };

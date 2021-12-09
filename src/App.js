@@ -7,29 +7,31 @@ import Goods from "./components/Goods/Goods";
 import Cart from "./pages/Cart/Cart"
 import Favourites from "./pages/Favourites/Favourites";
 
+import { routes } from "./config.js";
+
 import data from "./data/goods.json";
-import { addToFavourites, changeFavourite, setGoods, deleteFavourite, changeCart, addToCart, deleteCart } from "./store/actions";
+import {
+  addToFavourites,
+  changeFavourite,
+  setGoods,
+  changeCart,
+  addToCart
+} from "./store/actions";
 
 import './App.css';
 
 function App() {
 
-  const homeLink = "/";
-  const favouritesLink = "/favourites";
-  const cartLink = "/cart";
-
-  const [loading, setLoading] = useState(false);
+  const [isloading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
-  const favouritesList = useSelector(state => state.goods.favourites);
-  const goodsClone = useSelector(state => state.goods.goodsClone);
-  const cart = useSelector(state => state.goods.cart);
+  const list = useSelector(state => state.goods.list);
 
   const setGoodsToStore = useCallback(() => {
-    setLoading(true);
+    setIsLoading(true);
     setTimeout(() => {
       dispatch(setGoods(data));
-      setLoading(false);
+      setIsLoading(false);
     }, 2000)
   }, [dispatch]);
 
@@ -39,29 +41,27 @@ function App() {
   }
 
   const filterFavourites = useCallback(() => {
-    dispatch(addToFavourites(goodsClone.filter(good => good.isFavourite === true)))
-  }, [goodsClone, dispatch]);
+    const allFavourites = list.filter(good => good.isFavourite);
+    dispatch(addToFavourites(allFavourites));
+  }, [list, dispatch]);
 
-  const filterCats = useCallback(() => {
-    const newCart = goodsClone.filter(good => good.isCart).map(item => {
-      item.count = 1;
-      return item;
-    })
+  const filterCarts = useCallback(() => {
+    const newCart = list.filter(good => good.isCart).map(item => ({ ...item, count: 1 }));
     dispatch(addToCart(newCart));
-  }, [dispatch, goodsClone]);
+  }, [dispatch, list]);
 
-  const deleteFavouriteItem = (favId) => {
-    dispatch(deleteFavourite(favId));
-  }
+  // const deleteFavouriteItem = (favId) => {
+  //   dispatch(deleteFavourite(favId));
+  // }
 
   const changeCartHandler = (good) => {
     dispatch(changeCart(good));
-    filterCats();
+    filterCarts();
   }
 
-  const deleteCartItem = (cartId) => {
-    dispatch(deleteCart(cartId));
-  }
+  // const deleteCartItem = (cartId) => {
+  //   dispatch(deleteCart(cartId));
+  // }
 
   useEffect(() => {
     setGoodsToStore();
@@ -69,28 +69,23 @@ function App() {
 
   useEffect(() => {
     filterFavourites();
-    filterCats();
-  }, [filterFavourites, filterCats]);
+    filterCarts();
+  }, [filterFavourites, filterCarts]);
 
   return (
     <div className="wrapper">
-      <Header homeLink={homeLink} favouritesLink={favouritesLink} cartLink={cartLink} />
+      <Header />
       <div className="container">
         <Routes>
-          <Route exact path={homeLink} element={
-            <Goods goods={goodsClone}
-              loading={loading}
+          <Route exact path={routes.home} element={
+            <Goods
+              isloading={isloading}
               changeFavouritesHandler={changeFavouritesHandler}
               changeCartHandler={changeCartHandler}
             />
           } />
-          <Route path={favouritesLink} element={
-            <Favourites favouritesList={favouritesList}
-              deleteFavouriteItem={deleteFavouriteItem}
-              homeLink={homeLink}
-            />
-          } />
-          <Route path={cartLink} element={<Cart cart={cart} deleteCartItem={deleteCartItem} />} />
+          <Route path={routes.favourites} element={<Favourites />} />
+          <Route path={routes.cart} element={<Cart />} />
           <Route />
         </Routes>
       </div>

@@ -1,7 +1,25 @@
-import { FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
+import { useSelector, useDispatch } from "react-redux";
+
+import { routes } from "../../config.js";
+
+import CartRow from "../../components/СartRow/CartRow.js";
+import EmptyList from "../../components/EmptyList/EmptyList.js";
+
+import { deleteCart } from "../../store/actions/index.js";
+
 import "./Cart.css";
 
-const Cart = ({ cart, deleteCartItem }) => {
+const Cart = () => {
+
+  const cart = useSelector(state => state.goods.cart);
+  const dispatch = useDispatch();
+
+  const deleteCartItem = (cartId) => {
+    dispatch(deleteCart(cartId));
+  }
+
   return (
     <div>
       <h2 className="page__title">Cart</h2>
@@ -21,19 +39,7 @@ const Cart = ({ cart, deleteCartItem }) => {
               <tbody>
                 {
                   cart.map((item, index) => (
-                    <tr key={item.id}>
-                      <td>{index + 1}</td>
-                      <td>{item.title}</td>
-                      <td>{item.price}$</td>
-                      <td>
-                        <button>-</button>
-                        <span>{item.count}</span>
-                        <button>+</button>
-                      </td>
-                      <td>
-                        <FaTrashAlt className="cart-delete" onClick={() => deleteCartItem(item.id)} />
-                      </td>
-                    </tr>
+                    <CartRow item={item} index={index} deleteCartItem={deleteCartItem} key={item.id} />
                   ))
                 }
                 <tr>
@@ -47,8 +53,8 @@ const Cart = ({ cart, deleteCartItem }) => {
             <button className="btn-order">Оформить заказ</button>
           </>
           : <>
-            <h3 className="cart-empty">Корзина пуста</h3>
-            <button className="btn-order">Перейти на главную</button>
+            <EmptyList text={"Корзина пустая"} />
+            <Link to={routes.home}><button className="btn-order">Перейти на главную</button></Link>
           </>
       }
 

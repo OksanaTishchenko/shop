@@ -10,7 +10,7 @@ import {
 
 const initialState = {
   goods: [],
-  goodsClone: [],
+  list: [],
   favourites: [],
   cart: [],
 }
@@ -21,15 +21,15 @@ export function goodsReducer(state = initialState, action) {
       return {
         ...state,
         goods: action.payload,
-        goodsClone: action.payload
+        list: action.payload
       }
 
     case CHANGE_FAVOURITE:
-      const idx = state.goodsClone.findIndex(favourite => favourite.id === action.payload)
-      state.goodsClone[idx].isFavourite = !state.goodsClone[idx].isFavourite
+      const idx = state.list.findIndex(favourite => favourite.id === action.payload)
+      state.list[idx].isFavourite = !state.list[idx].isFavourite
       return {
         ...state,
-        goodsClone: [...state.goodsClone]
+        list: [...state.list]
       }
 
     case ADD_TO_FAVOURITES:
@@ -39,20 +39,20 @@ export function goodsReducer(state = initialState, action) {
       }
 
     case CHANGE_CART:
-      const idxCart = state.goodsClone.findIndex(good => good.id === action.payload.id)
-      state.goodsClone[idxCart].isCart = !state.goodsClone[idxCart].isCart
+      const idxCart = state.list.findIndex(good => good.id === action.payload.id)
+      state.list[idxCart].isCart = !state.list[idxCart].isCart
       return {
         ...state,
-        goodsClone: [...state.goodsClone]
+        list: [...state.list]
       }
 
     case DELETE_FAVOURITE:
-      const index = state.goodsClone.findIndex(item => item.id === action.payload)
-      state.goodsClone[index].isFavourite = !state.goodsClone[index].isFavourite
+      const index = state.list.findIndex(item => item.id === action.payload)
+      state.list[index].isFavourite = !state.list[index].isFavourite
       return {
         ...state,
         favourites: state.favourites.filter(elem => elem.id !== action.payload),
-        goodsClone: [...state.goodsClone]
+        list: [...state.list]
       }
 
     case ADD_TO_CART:
@@ -62,12 +62,13 @@ export function goodsReducer(state = initialState, action) {
       }
 
     case DELETE_CART:
-      const indexCart = state.goodsClone.findIndex(item => item.id === action.payload);
-      state.goodsClone[indexCart].isCart = !state.goodsClone[indexCart].isCart;
+      const indexCart = state.list.findIndex(item => item.id === action.payload);
+      state.list[indexCart].isCart = !state.list[indexCart].isCart;
       return {
         ...state,
-        goodsClone: [...state.goodsClone]
+        list: [...state.list]
       }
+
     default:
       return state
   }

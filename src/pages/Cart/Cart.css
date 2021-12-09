@@ -6,7 +6,6 @@
 
 .cart td,
 .cart th {
-  /* border: 1px solid #ccc; */
   padding: 5px ;
   text-align: center;
 }
@@ -19,7 +18,7 @@
   border-bottom: 1px solid #ccc;
 }
 
-.cart td:nth-child(4) button {
+.btn-actions {
   outline: none;
   border: none;
   border-radius: 5px;
@@ -31,11 +30,11 @@
   transition: .15s;
 }
 
-.cart td:nth-child(4) button:hover {
+.btn-actions:hover {
   background: #92162f;
 }
 
-.cart td:nth-child(4) button:disabled {
+.btn-actions:disabled {
   background: #ccc;
   color: #000;
   cursor: not-allowed;

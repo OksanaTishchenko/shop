@@ -5,3 +5,5 @@ export const CHANGE_CART = "CHANGE_CART";
 export const DELETE_FAVOURITE = "DELETE_FAVOURITE";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_CART = "DELETE_CART";
+export const INCREMENT_COUNT = "INCREMENT_COUNT";
+export const DECREMENT_COUNT = "DECREMENT_COUNT";

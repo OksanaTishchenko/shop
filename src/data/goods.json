@@ -5,7 +5,7 @@
     "price": "100000",
     "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg",
     "isFavourite": false,
-    "isCart": false
+    "isCart": true
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "price": "60000",
     "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg",
     "isFavourite": false,
-    "isCart": false
+    "isCart": true
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "price": "30000",
     "img": "https://i.pinimg.com/originals/1d/3b/3e/1d3b3efddab9ade72d43fb9d3a3ca1bb.jpg",
     "isFavourite": false,
-    "isCart": false
+    "isCart": true
   },
   {
     "id": 4,
