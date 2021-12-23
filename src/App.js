@@ -12,9 +12,8 @@ import { routes } from "./config.js";
 import data from "./data/goods.json";
 import {
   addToFavourites,
-  changeFavourite,
+  deleteFavourite,
   setGoods,
-  changeCart,
   addToCart
 } from "./store/actions";
 
@@ -25,7 +24,8 @@ function App() {
   const [isloading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
-  const list = useSelector(state => state.goods.list);
+  const favouriteGood = useSelector(state => state.goods.favourites);
+  const cartGood = useSelector(state => state.goods.cart);
 
   const setGoodsToStore = useCallback(() => {
     setIsLoading(true);
@@ -35,42 +35,27 @@ function App() {
     }, 2000)
   }, [dispatch]);
 
-  const changeFavouritesHandler = (goodId) => {
-    dispatch(changeFavourite(goodId));
-    filterFavourites();
+  const addFavouritesHandler = (favourite) => {
+    const elem = favouriteGood.find(item => item.id === favourite.id);
+    if (!elem) dispatch(addToFavourites(favourite));
   }
 
-  const filterFavourites = useCallback(() => {
-    const allFavourites = list.filter(good => good.isFavourite);
-    dispatch(addToFavourites(allFavourites));
-  }, [list, dispatch]);
-
-  const filterCarts = useCallback(() => {
-    const newCart = list.filter(good => good.isCart).map(item => ({ ...item, count: 1 }));
-    dispatch(addToCart(newCart));
-  }, [dispatch, list]);
-
-  // const deleteFavouriteItem = (favId) => {
-  //   dispatch(deleteFavourite(favId));
-  // }
-
-  const changeCartHandler = (good) => {
-    dispatch(changeCart(good));
-    filterCarts();
+  const removeFavouritesHandler = (favourite) => {
+    const updatedFavourites = favouriteGood.filter(item => item.id !== favourite.id);
+    dispatch(deleteFavourite(updatedFavourites));
   }
 
-  // const deleteCartItem = (cartId) => {
-  //   dispatch(deleteCart(cartId));
-  // }
+  const addCartHandler = (goodCart) => {
+    const elem = cartGood.find(item => item.id === goodCart.id);
+    if (!elem) {
+      dispatch(addToCart({ ...goodCart, count: 1, order: goodCart.id }));
+    }
+  }
 
   useEffect(() => {
     setGoodsToStore();
-  }, [setGoodsToStore]);
 
-  useEffect(() => {
-    filterFavourites();
-    filterCarts();
-  }, [filterFavourites, filterCarts]);
+  }, [setGoodsToStore]);
 
   return (
     <div className="wrapper">
@@ -80,11 +65,15 @@ function App() {
           <Route exact path={routes.home} element={
             <Goods
               isloading={isloading}
-              changeFavouritesHandler={changeFavouritesHandler}
-              changeCartHandler={changeCartHandler}
+              addFavouritesHandler={addFavouritesHandler}
+              removeFavouritesHandler={removeFavouritesHandler}
+              addCartHandler={addCartHandler}
             />
           } />
-          <Route path={routes.favourites} element={<Favourites />} />
+          <Route path={routes.favourites} element={<Favourites
+            removeFavouritesHandler={removeFavouritesHandler}
+            addCartHandler={addCartHandler}
+          />} />
           <Route path={routes.cart} element={<Cart />} />
           <Route />
         </Routes>

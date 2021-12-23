@@ -23,6 +23,7 @@
   color: #fff;
   transition: .15s;
   font-size: 20px;
+  position: relative;
 }
 
 .active {
@@ -31,4 +32,19 @@
 
 .menu__link:hover {
   color: rgb(73, 30, 22)
+}
+
+.menu-count {
+  background: rosybrown;
+  border-radius: 50%;
+  font-size: 14px;
+  padding: 5px;
+  width: 17px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -10px;
+  left: 10px;
 }

@@ -26,7 +26,8 @@
 }
 
 .favourite__icon-delete,
-.favourite__icon-cart{
+.favourite__icon-cart,
+.favourite__icon-in-cart {
   margin-left: 15px;
   transition: .15s;
   cursor: pointer;
@@ -39,6 +40,9 @@
 .favourite__icon-delete:hover {
   color: rgb(207, 30, 65);
 }
-.favourite__icon-cart:hover {
+.favourite__icon-cart:hover{
+  color: green;
+}
+.favourite__icon-in-cart {
   color: green;
 }

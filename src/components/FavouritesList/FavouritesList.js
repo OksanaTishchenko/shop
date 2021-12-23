@@ -1,11 +1,21 @@
+import { useSelector } from "react-redux";
+
 import FavouritesListItem from "../FavouritesListItem/FavouritesListItem";
 
-const FavouritesList = ({ favouritesList, deleteFavouriteItem }) => {
+const FavouritesList = ({ removeFavouritesHandler, addCartHandler }) => {
+
+  const favouriteGood = useSelector(state => state.goods.favourites);
+
   return (
     <ul className="favourites">
-      {favouritesList.map((favourite, index) => (
-        favourite.isFavourite &&
-        <FavouritesListItem favourite={favourite} index={index} deleteFavouriteItem={deleteFavouriteItem} key={favourite.id} />
+      {favouriteGood.map((favourite, index) => (
+        <FavouritesListItem
+          favourite={favourite}
+          index={index}
+          key={favourite.id}
+          removeFavouritesHandler={removeFavouritesHandler}
+          addCartHandler={addCartHandler}
+        />
       ))}
     </ul>
   );

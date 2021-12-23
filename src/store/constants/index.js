@@ -1,7 +1,5 @@
 export const ADD_GOODS = "ADD_GOODS";
 export const ADD_TO_FAVOURITES = "ADD_TO_FAVOURITES";
-export const CHANGE_FAVOURITE = "CHANGE_FAVOURITE";
-export const CHANGE_CART = "CHANGE_CART";
 export const DELETE_FAVOURITE = "DELETE_FAVOURITE";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_CART = "DELETE_CART";

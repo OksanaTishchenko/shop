@@ -1,14 +1,22 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Loader from "../Loader/Loader";
+import { incrementCount } from "../../store/actions";
 
 import { FaHeart, FaCartArrowDown, FaRegHeart } from "react-icons/fa";
 
 import "./Goods.css";
 
-const Goods = ({ isloading, changeFavouritesHandler, changeCartHandler }) => {
+const Goods = ({ isloading, addFavouritesHandler, removeFavouritesHandler, addCartHandler }) => {
+
+  const dispatch = useDispatch();
 
   const goods = useSelector(state => state.goods.list);
+
+  const favourites = useSelector(state => state.goods.favourites);
+  const cart = useSelector(state => state.goods.cart);
+  const favIds = favourites.map(item => item.id);
+  const cartIds = cart.map(item => item.id);
 
   return (
     <div>
@@ -27,32 +35,35 @@ const Goods = ({ isloading, changeFavouritesHandler, changeCartHandler }) => {
                 <p className="good__price">{item.price} $</p>
               </div>
               <div className="good__icons">
-                {item.isFavourite &&
-                  <FaHeart
+                {favIds.includes(item.id) &&
+                  < FaHeart
                     className="good__icon-heart_bg good__icon-heart"
-                    onClick={() => changeFavouritesHandler(item.id)}
+                    onClick={() => removeFavouritesHandler(item)}
                   />
                 }
 
-                {!item.isFavourite &&
+                {!favIds.includes(item.id) &&
                   <FaRegHeart
                     className="good__icon-heart"
-                    onClick={() => changeFavouritesHandler(item.id)}
+                    onClick={() => addFavouritesHandler(item)}
                   />
                 }
 
-                {item.isCart &&
+
+                {cartIds.includes(item.id) &&
                   <FaCartArrowDown
                     className="good__icon-in-cart"
-                    onClick={() => changeCartHandler(item)}
+                    onClick={() => dispatch(incrementCount(item))}
+                  />}
+
+
+                {!cartIds.includes(item.id) &&
+                  <FaCartArrowDown
+                    className="good__icon-cart"
+                    onClick={() => addCartHandler(item)}
                   />
                 }
 
-                {!item.isCart && <FaCartArrowDown
-                  className="good__icon-cart"
-                  onClick={() => changeCartHandler(item)}
-                />
-                }
               </div>
             </div>
           ))}
