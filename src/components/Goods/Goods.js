@@ -20,7 +20,7 @@ const Goods = ({ isloading, addFavouritesHandler, removeFavouritesHandler, addCa
 
   return (
     <div>
-      <h2 className="page__title">Товары</h2>
+      <h2 className="page__title">Goods</h2>
 
       {isloading && <Loader />}
       {!isloading &&

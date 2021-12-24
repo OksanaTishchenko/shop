@@ -106,20 +106,19 @@ const Cart = () => {
 
               </tbody>
             </table>
-            {!isOrder && <button className="btn-order" onClick={convertToPDF}>Оформить заказ</button>}
+            {!isOrder && <button className="btn-order" onClick={convertToPDF}>Place an order</button>}
             {isOrder && <Pdf targetRef={refPage} filename="order.pdf">
               {({ toPdf }) => (
                 <div>
-                  <h3>Thanks, sure</h3>
-                  <button className="btn-order" onClick={toPdf}> Скачать PDF-документ</button>
-                  <button className="btn-order" onClick={convertToPDF}> Вернуться назад</button>
+                  <button className="btn-order" onClick={toPdf}>Download PDF</button>
+                  <button className="btn-order" onClick={convertToPDF}>Go back</button>
                 </div>
               )}
             </Pdf>}
           </>
           : <>
-            <EmptyList text={"Корзина пустая"} />
-            <Link to={routes.home}><button className="btn-order">Перейти на главную</button></Link>
+            <EmptyList text={"Cart is empty"} />
+            <Link to={routes.home}><button className="btn-order">Go to the home</button></Link>
           </>
       }
 

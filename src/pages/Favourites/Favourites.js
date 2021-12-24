@@ -23,8 +23,8 @@ const Favourites = ({ removeFavouritesHandler, addCartHandler }) => {
         />}
       {!favouritesList.length > 0 &&
         <>
-          <EmptyList text={"Избранных нет"} />
-          <Link to={routes.home}><button className="btn-order">Перейти на главную</button></Link>
+          <EmptyList text={"There are no favourites"} />
+          <Link to={routes.home}><button className="btn-order">Go to the home</button></Link>
         </>}
     </div>
   );
